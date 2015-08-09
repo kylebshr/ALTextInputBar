@@ -151,10 +151,10 @@ public class ALTextView: UITextView {
     Ensure that when the text view is resized that the caret displays correctly withing the visible space
     */
     private func ensureCaretDisplaysCorrectly() {
-//        let rect = caretRectForPosition(selectedTextRange?.end)
-//        UIView.performWithoutAnimation({ () -> Void in
-//            self.scrollRectToVisible(rect, animated: false)
-//        })
+        let rect = caretRectForPosition(selectedTextRange?.end)
+        UIView.performWithoutAnimation({ () -> Void in
+            self.scrollRectToVisible(rect, animated: false)
+        })
     }
     
     //MARK: - Placeholder Layout -
