@@ -101,7 +101,14 @@ public class ALTextInputBar: UIView, ALTextViewDelegate {
         
         return _textView
         }()
-    
+
+    private let separator: UIView = {
+
+        let view = UIView()
+        view.backgroundColor = UIColor.lightGrayColor()
+        return view
+        }()
+
     private var showRightButton = false
     private var showLeftButton = false
         
@@ -117,7 +124,8 @@ public class ALTextInputBar: UIView, ALTextViewDelegate {
     
     private func commonInit() {
         addSubview(textView)
-        
+        addSubview(separator)
+
         textView.textViewDelegate = self
         
         backgroundColor = UIColor.groupTableViewBackgroundColor()
@@ -175,7 +183,9 @@ public class ALTextInputBar: UIView, ALTextViewDelegate {
         if (showRightButton || alwaysShowRightButton) && rightViewSize.width > 0 {
             textViewWidth -= (horizontalSpacing + rightViewSize.width)
         }
-        
+
+        separator.frame = CGRect(x: 0, y: 0, width: size.width, height: 0.5)
+
         textView.frame = CGRectMake(textViewX, textViewY, textViewWidth, textViewHeight)
     }
     
