@@ -109,6 +109,8 @@ public class ALTextInputBar: UIView, ALTextViewDelegate {
         return view
         }()
 
+    private let textFieldBackground = UITextField()
+    private let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .ExtraLight))
     private var showRightButton = false
     private var showLeftButton = false
         
@@ -123,12 +125,15 @@ public class ALTextInputBar: UIView, ALTextViewDelegate {
     }
     
     private func commonInit() {
+        addSubview(blurView)
+        addSubview(textFieldBackground)
         addSubview(textView)
         addSubview(separator)
 
+        textFieldBackground.userInteractionEnabled = false
+
         textView.textViewDelegate = self
-        
-        backgroundColor = UIColor.groupTableViewBackgroundColor()
+        backgroundColor = UIColor.clearColor()
     }
     
     // MARK: - View positioning and layout -
@@ -185,7 +190,8 @@ public class ALTextInputBar: UIView, ALTextViewDelegate {
         }
 
         separator.frame = CGRect(x: 0, y: 0, width: size.width, height: 0.5)
-
+        blurView.frame = frame
+        textFieldBackground.frame = CGRectMake(textViewX, textViewY, textViewWidth, textViewHeight)
         textView.frame = CGRectMake(textViewX, textViewY, textViewWidth, textViewHeight)
     }
     
