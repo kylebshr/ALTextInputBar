@@ -63,7 +63,7 @@ public class ALTextInputBar: UIView, ALTextViewDelegate {
     If this view is nil nothing will be displayed, and the text view will fill the space
     If alwaysShowRightButton is false this view will animate in from the right when the text view has content
     */
-    public var rightView: UIView? {
+    public var rightView: UIButton? {
         willSet(newValue) {
             if newValue == nil {
                 if let view = rightView {
@@ -131,6 +131,7 @@ public class ALTextInputBar: UIView, ALTextViewDelegate {
         addSubview(separator)
 
         textFieldBackground.userInteractionEnabled = false
+        textFieldBackground.borderStyle = UITextBorderStyle.RoundedRect
 
         textView.textViewDelegate = self
         backgroundColor = UIColor.clearColor()
@@ -191,8 +192,8 @@ public class ALTextInputBar: UIView, ALTextViewDelegate {
 
         separator.frame = CGRect(x: 0, y: 0, width: size.width, height: 0.5)
         blurView.frame = frame
-        textFieldBackground.frame = CGRectMake(textViewX, textViewY, textViewWidth, textViewHeight)
-        textView.frame = CGRectMake(textViewX, textViewY, textViewWidth, textViewHeight)
+        textFieldBackground.frame = CGRectMake(textViewX, textViewY - 3, textViewWidth, textViewHeight + 6)
+        textView.frame = CGRectMake(textViewX + 8, textViewY, textViewWidth - 16, textViewHeight)
     }
     
     public func updateViews(animated: Bool) {

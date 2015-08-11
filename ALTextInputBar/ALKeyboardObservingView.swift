@@ -40,9 +40,11 @@ public class ALKeyboardObservingView: UIView {
     public func updateHeight(height: CGFloat) {
         if UIDevice.floatVersion() < 8.0 {
             frame.size.height = height
-            
-            setNeedsLayout()
-            layoutIfNeeded()
+
+            UIView.animateWithDuration(0.3) {
+                self.setNeedsLayout()
+                self.layoutIfNeeded()
+            }
         }
         
         for c in constraints() {
